@@ -8,7 +8,7 @@ Description : This script will help you in HackTheBox, vulnhub ..
 by searching for important keywords in HTML source code
 
 '''
-from tabulate import tabulate
+import  tabulate
 import requests 
 from bs4 import BeautifulSoup
 import re
@@ -75,6 +75,6 @@ def main():
 		anlayzer(source_code, file)
 
 	table = [links,img_src,script_links]
-	print(tabulate(table,headers=['links', 'img src', 'script_links']))
+	print(table)
 if __name__ == '__main__':
 	main()

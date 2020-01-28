@@ -46,16 +46,7 @@ inputFile = parser['inputFile']
 if parser['threads'] != None:
 	threadNum = parser['threads'] 
 
-# def sendRequest1(url, keywords, fileName=None):
-# 	r = requests.session()
-# 	certsh = "https://crt.sh"
 
-# 	for key in keywords:
-# 		# print(key)
-# 		data = {"q":"%.{}.{}".format(key, url), "output":"json"}
-# 		response = r.post(url = certsh, data= data)
-# 		parseJson(response.text, fileName)	
-# 		 # here should be multi-threading 
 
 def sendRequest(key):
 	r = requests.session()
@@ -93,28 +84,14 @@ def main():
 
 
 	if inputFile != None:
-		# inputFile = parseFile(inputFile)
-		# # print(inputFile)
-		# thread = []
-		# for i in range(int(threadNum)):
-		# 	process = Thread(target=sendRequest, args=[domain,inputFile,outputFile])
-		# 	process.start()
-		# 	thread.append(process)
-		# for p in thread:
-		# 	p.join()
+
 
 		inputFile = parseFile(inputFile)
 		pool = ThreadPool(int(threadNum))
 		results = pool.map(sendRequest, inputFile)
 
 	else:
-		# thread = []
-		# for i in range(len(subdomains.split(','))):
-		# 	process = Thread(target=sendRequest, args=[domain,subdomains,outputFile])
-		# 	process.start()
-		# 	thread.append(process)
-		# for p in thread:
-		# 	p.join()
+
 		inputFile = subdomains.split(',')
 		pool = ThreadPool(int(threadNum))
 		results = pool.map(sendRequest, inputFile)
